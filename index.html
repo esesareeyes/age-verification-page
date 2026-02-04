@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Age Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #status {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome!</h1>
+  <p>Click the button below to verify that I am over 18 via a trusted provider.</p>
+
+  <button id="verifyButton">Verify Age with Yoti</button>
+
+  <div id="status"></div>
+
+  <!-- Yoti JavaScript SDK -->
+  <script src="https://cdn.yoti.com/js-sdk/latest/yoti.js"></script>
+  <script>
+    const verifyButton = document.getElementById('verifyButton');
+    const statusDiv = document.getElementById('status');
+
+    verifyButton.addEventListener('click', () => {
+      // Replace 'YOUR_YOTI_CLIENT_SDK_ID' with your actual Yoti Client SDK ID
+      const yotiClientSDKId = 'YOUR_YOTI_CLIENT_SDK_ID';
+
+      const yoti = new Yoti({
+        clientSDKId: yotiClientSDKId,
+        sandbox: true, // enables sandbox mode for testing
+        onSuccess: function(result) {
+          if (result.ageOver18) {
+            statusDiv.innerHTML = "✅ Verified: This person is over 18!";
+          } else {
+            statusDiv.innerHTML = "❌ Verification failed: Under 18.";
+          }
+        },
+        onError: function(error) {
+          console.error(error);
+          statusDiv.innerHTML = "⚠️ Error during verification. Please try again.";
+        }
+      });
+
+      yoti.startVerification();
+    });
+  </script>
+
+</body>
+</html>
