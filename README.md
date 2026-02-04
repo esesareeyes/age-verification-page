@@ -1,2 +1,2 @@
 Age verification landing page (18+)
-Uses Yoti for secure age verification
+Uses PrivadoID for secure age verification
