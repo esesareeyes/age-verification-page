@@ -1,2 +1,2 @@
-# age-verification-page
-Landing page for age verification (18+)
+Age verification landing page (18+)
+Uses Yoti for secure age verification
