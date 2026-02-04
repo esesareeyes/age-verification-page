@@ -1,76 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Age Verification</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-      text-align: center;
-    }
-    button {
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    #status {
-      margin-top: 20px;
-      font-size: 18px;
-    }
-  </style>
+    <title>Verified 18+ Age</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 15px 25px; font-size: 18px; cursor: pointer; }
+        #verified { margin-top: 20px; font-size: 20px; color: green; }
+    </style>
 </head>
 <body>
+    <h1>18+ Verified Age</h1>
+    <p>Click below to confirm my age is verified over 18.</p>
 
-  <h1>Welcome!</h1>
-  <p>Click the button below to verify that I am over 18 via a trusted provider.</p>
+    <!-- Button linking to Privado ID credential verification -->
+    <a href="YOUR_PRIVADO_CREDENTIAL_LINK" target="_blank">
+        <button>Verify Age</button>
+    </a>
 
-  <button id="verifyButton">Verify Age with Yoti</button>
+    <!-- Optional: QR code if Privado provides one -->
+    <div id="qr-code" style="margin-top: 20px;">
+        <img src="YOUR_PRIVADO_QR_IMAGE_URL" alt="Scan to verify age">
+    </div>
 
-  <div id="status"></div>
-
-  <!-- Yoti JavaScript SDK -->
-  <script src="https://cdn.yoti.com/js-sdk/latest/yoti.js"></script>
-  <script>
-    const verifyButton = document.getElementById('verifyButton');
-    const statusDiv = document.getElementById('status');
-
-    verifyButton.addEventListener('click', () => {
-      // Replace 'YOUR_YOTI_CLIENT_SDK_ID' with your actual Yoti Client SDK ID
-      const yotiClientSDKId = 'YOUR_YOTI_CLIENT_SDK_ID';
-
-      const yoti = new Yoti({
-        clientSDKId: yotiClientSDKId,
-        sandbox: true, // enables sandbox mode for testing
-        onSuccess: function(result) {
-          if (result.ageOver18) {
-            statusDiv.innerHTML = "✅ Verified: This person is over 18!";
-          } else {
-            statusDiv.innerHTML = "❌ Verification failed: Under 18.";
-          }
-        },
-        onError: function(error) {
-          console.error(error);
-          statusDiv.innerHTML = "⚠️ Error during verification. Please try again.";
-        }
-      });
-
-      yoti.startVerification();
-    });
-  </script>
-
+    <!-- Optional placeholder for verification messages -->
+    <div id="verified"></div>
 </body>
 </html>
